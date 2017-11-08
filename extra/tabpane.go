@@ -77,6 +77,17 @@ func (tp *Tabpane) SetActiveLeft() {
 	}
 }
 
+func (tp *Tabpane) SetActiveIndex(x int) {
+	tp.activeTabIndex = x
+	if tp.posTabText[tp.activeTabIndex] < tp.offTabText {
+		tp.offTabText = tp.posTabText[tp.activeTabIndex]
+	}
+	endOffset := tp.posTabText[tp.activeTabIndex] + tp.Tabs[tp.activeTabIndex].RuneLen
+	if endOffset+tp.offTabText > tp.InnerWidth() {
+		tp.offTabText = endOffset - tp.InnerWidth()
+	}
+}
+
 func (tp *Tabpane) SetActiveRight() {
 	if tp.activeTabIndex == len(tp.Tabs)-1 {
 		return
