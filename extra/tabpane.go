@@ -77,6 +77,10 @@ func (tp *Tabpane) SetActiveLeft() {
 	}
 }
 
+func (tp *Tabpane) GetActiveIndex() int{
+	return tp.activeTabIndex
+}
+
 func (tp *Tabpane) SetActiveIndex(x int) {
 	tp.activeTabIndex = x
 	if tp.posTabText[tp.activeTabIndex] < tp.offTabText {
